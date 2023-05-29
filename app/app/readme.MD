@@ -15,4 +15,8 @@ Creating warehouses locations and tracking the inventory quantity and movement b
 
 ## Pictures
 
-1
+![index](https://github.com/MalekMohanna/EMS/blob/master/images/1.JPG)
+![index](https://github.com/MalekMohanna/EMS/blob/master/images/2.JPG)
+![index](https://github.com/MalekMohanna/EMS/blob/master/images/3.JPG)
+![index](https://github.com/MalekMohanna/EMS/blob/master/images/4.JPG)
+![index](https://github.com/MalekMohanna/EMS/blob/master/images/5.JPG)
