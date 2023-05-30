@@ -26,18 +26,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for product in products %}
-                    {% for location in locations %}
-                    {% set balance = product_balances[location.location_id][product.product_id] %}
-                    {% if balance > 0 %}
-                    <tr>
-                        <td>{{ product.product_id }}</td>
-                        <td>{{ location.location_id }}</td>
-                        <td>{{ balance }}</td>
-                    </tr>
-                    {% endif %}
-                    {% endfor %}
-                    {% endfor %}
+                    <tbody>
+                        {% for location_id, product_balance in product_balances.items() %}
+                            {% for product_id, balance in product_balance.items() %}
+                                {% if balance != 0 %}
+                                    <tr>
+                                        <td>{{ product_id }}</td>
+                                        <td>{{ location_id }}</td>
+                                        <td>{{ balance }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </tbody>
                 </tbody>
             </table>
         </div>

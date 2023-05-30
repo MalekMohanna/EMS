@@ -63,19 +63,26 @@ def product_balances_report():
     # Query all locations and products
     locations = Location.query.all()
     products = Product.query.all()
-
-    # Create a dictionary to store product balances per location
     product_balances = {}
 
-    # Calculate product balances for each location
     for location in locations:
         product_balances[location.location_id] = {}
+        
         for product in products:
             balance = 0
-            movements = ProductMovement.query.filter_by(to_location=location.location_id,
-                                                    product_id=product.product_id).all()
-            for movement in movements:
+            
+            # Calculate balance for movements to the location
+            to_movements = ProductMovement.query.filter_by(to_location=location.location_id,
+                                                        product_id=product.product_id).all()
+            for movement in to_movements:
                 balance += movement.qty
+            
+            # Calculate balance for movements from the location
+            from_movements = ProductMovement.query.filter_by(from_location=location.location_id,
+                                                            product_id=product.product_id).all()
+            for movement in from_movements:
+                balance -= movement.qty
+            
             product_balances[location.location_id][product.product_id] = balance
 
     return render_template('report.html', locations=locations, products=products, product_balances=product_balances)
